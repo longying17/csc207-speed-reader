@@ -1,0 +1,28 @@
+
+public class SpeedReader {
+	private String filename;
+	private int width;
+	private int height;
+	private int fontSize;
+	private int wpm;
+	
+	public SpeedReader(String filename, int width, 
+			int height, int fontSize, int wpm){
+		this.filename = filename;
+		this.width = width;
+		this.height = height;
+		this.fontSize = fontSize;
+		this.wpm = wpm;
+	}
+	
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+
+	}
+
+}
