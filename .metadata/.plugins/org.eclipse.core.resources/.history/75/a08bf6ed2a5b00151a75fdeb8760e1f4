@@ -1,0 +1,33 @@
+import java.awt.*;
+import java.io.FileNotFoundException;
+
+public class SpeedReader {
+	
+	public static void reader(String filename, int width, 
+			int height, int fontSize, int wpm) throws FileNotFoundException, InterruptedException{
+		WordGenerator w1 = new WordGenerator(filename);
+		DrawingPanel panel = new DrawingPanel(width, height);
+		Graphics g = panel.getGraphics();
+		Font f = new Font("Courier", Font.BOLD, fontSize);
+		g.setFont(f);
+		while(w1.hasNext()){
+			g.drawString(w1.next(), 100, 100);
+			Thread.sleep(60000/wpm);			
+			g.setColor(Color.white);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.black);
+		}
+	}
+
+	/**
+	 * @param args
+	 * @throws InterruptedException 
+	 * @throws FileNotFoundException 
+	 */
+	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+		
+
+		reader("/home/longying17/Desktop/CSC207/homework/csc207-speed-reader/Text.md", 400, 300, 50, 1000);
+	}
+
+}

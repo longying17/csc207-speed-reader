@@ -1,0 +1,50 @@
+import java.awt.*;
+import java.io.FileNotFoundException;
+
+public class SpeedReader {
+	
+	public static void reader(String filename, int width, 
+			int height, int fontSize, int wpm) throws FileNotFoundException, InterruptedException{
+		WordGenerator w1 = new WordGenerator(filename);
+		DrawingPanel panel = new DrawingPanel(width, height);
+		Graphics g = panel.getGraphics();
+		Font f = new Font("Courier", Font.BOLD, fontSize);
+		g.setFont(f);
+		while(w1.hasNext()){
+			g.drawString(w1.next(), 100, 100);
+			Thread.sleep(60000/wpm);			
+			g.setColor(Color.white);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.black);
+		}
+	}
+
+	/**
+	 * @param args
+	 * @throws InterruptedException 
+	 * @throws FileNotFoundException 
+	 */
+	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+		if(args.length != 5){
+			System.out.println("Please provide all five arguments: filename, width, height, font size, and words per minute");
+			return;
+		} else if(!(args[0] instanceof String)){
+			System.out.println("The first argument, filename, has to be a string");
+			return;
+		} else if(!(Integer.getInteger(args[1]) instanceof Integer)){
+			System.out.println("The second argument, width, has to be an integer");
+			return;
+		} else if(!(Integer.getInteger(args[2]) instanceof Integer)){
+			System.out.println("The third argument, height, has to be an integer");
+			return;
+		} else if(!(Integer.getInteger(args[3]) instanceof Integer)){
+			System.out.println("The fourth argument, font size, has to be an integer");
+			return;
+		} else if(!(Integer.getInteger(args[4]) instanceof Integer)){
+			System.out.println("The fifth argument, words per minute, has to be an integer");
+			return;
+		} else{
+			reader(args[0], Integer.getInteger(args[1]), Integer.getInteger(args[2]), Integer.getInteger(args[3]), Integer.getInteger(args[4]));
+		}
+	}
+}
