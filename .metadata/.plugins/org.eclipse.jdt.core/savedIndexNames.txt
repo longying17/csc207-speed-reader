@@ -9,8 +9,8 @@ INDEX VERSION 1.126+/home/longying17/Desktop/CSC207/homework/csc207-speed-reader
 821608291.index
 3026245116.index
 2744878784.index
-3512161136.index
 925982370.index
+3512161136.index
 2253745042.index
 3883508318.index
 813341167.index

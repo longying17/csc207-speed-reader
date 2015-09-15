@@ -1,0 +1,45 @@
+import java.awt.*;
+import java.io.FileNotFoundException;
+
+public class SpeedReader {
+	
+	public static void reader(String filename, int width, 
+			int height, int fontSize, int wpm) throws FileNotFoundException, InterruptedException{
+		WordGenerator w1 = new WordGenerator(filename);
+		DrawingPanel panel = new DrawingPanel(width, height);
+		Graphics g = panel.getGraphics();
+		Font f = new Font("Courier", Font.BOLD, fontSize);
+		g.setFont(f);
+		g.getFontMetrics();
+		while(w1.hasNext()){
+			String nextWord = w1.next();
+			g.drawString(nextWord, (width - stringWidth(nextWord)) / 2, (height - getHeight(nextWord)) / 2);
+			Thread.sleep(60000/wpm);			
+			g.setColor(Color.white);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.black);
+		}
+	}
+
+	private static int getHeight(String nextWord) {
+		return getHeight(nextWord);
+	}
+
+	private static int stringWidth(String nextWord) {
+		return stringWidth(nextWord);
+	}
+
+	/**
+	 * @param args
+	 * @throws InterruptedException 
+	 * @throws FileNotFoundException 
+	 */
+	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+		if(args.length != 5){
+			System.out.println("Please provide all five arguments: filename, width, height, font size, and words per minute");
+			return;
+		} else{
+			reader(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+		}
+	}
+}
